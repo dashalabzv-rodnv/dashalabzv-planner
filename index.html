@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Планер</title>
+<meta name="theme-color" content="#F1F0EE">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Планер">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<!-- ============ вход ============ -->
+<section class="auth" id="auth" hidden>
+  <form class="auth-card glass" id="authForm" autocomplete="on">
+    <h1 class="auth-title" id="authTitle">Hello</h1>
+    <p class="auth-sub" id="authSub">Войдите, чтобы открыть свой планер.</p>
+    <div class="field" id="nameRow" hidden><label for="aName">Как вас зовут</label><input id="aName" name="name" autocomplete="given-name" placeholder="Дарья"></div>
+    <div class="field" id="emailRow"><label for="aEmail">Почта</label><input id="aEmail" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+    <div class="field" id="passRow"><label for="aPass">Пароль</label><input id="aPass" name="password" type="password" autocomplete="current-password" minlength="6" required placeholder="Не меньше 6 символов"></div>
+    <p class="auth-msg" id="authMsg" hidden></p>
+    <button type="submit" class="btn primary tint c-due auth-go" id="authGo">Войти</button>
+    <div class="auth-links">
+      <button type="button" id="toSignup">Создать аккаунт</button>
+      <button type="button" id="toReset">Забыли пароль?</button>
+    </div>
+  </form>
+</section>
+
+<!-- ============ приложение ============ -->
+<div class="app" id="app" hidden>
+  <aside class="side glass" id="side"></aside>
+  <main class="main">
+    <div class="top">
+      <div class="when"><h1 id="hello">Hello</h1><div class="sub" id="subtitle"></div></div>
+      <div class="controls">
+        <div class="nav glass">
+          <button class="icon-btn" id="prev" aria-label="Назад"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="today-btn" id="todayBtn">Сегодня</button>
+          <button class="icon-btn" id="next" aria-label="Вперёд"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+        <div class="clock glass" id="clock"><span class="now" id="clockNow"></span><button class="weather" id="weather" type="button">Погода</button></div>
+        <div class="seg glass" id="viewSeg">
+          <button data-v="day">День</button><button data-v="week">Неделя</button><button data-v="month">Месяц</button><button data-v="insta">Instagram</button>
+        </div>
+        <button class="inbox-btn glass" id="inboxBtn">Входящие <span id="inboxN"></span></button>
+        <button class="add-btn tint c-due" id="addBtn">+ Задача</button>
+      </div>
+    </div>
+    <form class="assist glass" id="assist" autocomplete="off">
+      <input id="assistIn" placeholder="Скажите или напишите: «встреча с Анной в пятницу в 15:00»" aria-label="Ассистент">
+      <button type="button" class="mic tint c-hobby" id="mic" aria-label="Голосовой ввод"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+      <button type="submit" class="send tint c-work">Добавить</button>
+    </form>
+    <p class="assist-hint" id="assistHint" hidden></p>
+    <div class="mobile-cats" id="mcats"></div>
+    <div id="bannerSlot"></div>
+    <div id="mInbox"></div>
+    <h2 class="period" id="title"></h2>
+    <div id="view"></div>
+  </main>
+</div>
+<button class="fab tint c-due" id="fab" aria-label="Новая задача" hidden>+</button>
+<div class="toasts" id="toasts"></div>
+<div id="modalSlot"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="/config.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
